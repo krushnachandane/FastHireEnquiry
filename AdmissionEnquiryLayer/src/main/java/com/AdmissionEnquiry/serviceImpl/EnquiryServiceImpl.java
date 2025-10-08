@@ -44,4 +44,24 @@ public class EnquiryServiceImpl implements EnquiryServiceI {
         }
         return null;
     }
+
+    @Override
+    public String deleteEnquiryById(Integer eid) {
+        enquiryRepository.deleteById(eid);
+        return "Enquiry Deleted Successfully....!";
+    }
+
+    @Override
+    public String updateEnquiry(Integer eid ,AdmissionEnquiry enquiry) {
+        Optional<AdmissionEnquiry> enquiry1 = enquiryRepository.findById(eid);
+        if(enquiry1.isPresent()){
+            AdmissionEnquiry admissionEnquiry = enquiry1.get();
+            admissionEnquiry.setName(enquiry.getName());
+            admissionEnquiry.setEmail(enquiry.getEmail());
+            admissionEnquiry.setMobileNO(enquiry.getMobileNO());
+
+            enquiryRepository.save(admissionEnquiry);
+        }
+        return "Admission Enquiry Updated Successfully...!";
+    }
 }

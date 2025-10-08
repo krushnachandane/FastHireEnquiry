@@ -6,6 +6,7 @@ import com.AdmissionEnquiry.serviceI.EnquiryServiceI;
 import com.AdmissionEnquiry.serviceI.InquiryCoursesServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class EnquiryController {
 
     // Courses Section
 
-    @PostMapping("savecourses")
+    @PostMapping("/savecourses")
     public ResponseEntity<String> saveCourses(@RequestBody Courses courses){
         return new ResponseEntity<String>(coursesServiceI.saveCourses(courses), HttpStatus.CREATED);
     }
@@ -32,28 +33,46 @@ public class EnquiryController {
         return ResponseEntity.ok(coursesServiceI.getAllCourses());
     }
 
+    @PutMapping("/updatecourse/{cid}")
+    public ResponseEntity<String> updateCourses(@PathVariable("cid") Long cid,@RequestBody Courses courses) {
+        String result = coursesServiceI.updateCourses(cid, courses);
+        return new ResponseEntity<String>(result, HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/deletecourse/{cid}")
+    public ResponseEntity<String> deleteCourses(@PathVariable("cid") Long cid){
+        return new ResponseEntity<>(coursesServiceI.deleteCourses(cid),HttpStatus.OK);
+    }
 
     //Enquiry Section
 
-    @PostMapping("/courses/{courseId}")
+
+
+    @PostMapping("/enquiry/{courseId}")
     public ResponseEntity<String> saveEnquiry(@PathVariable Long courseId , @RequestBody AdmissionEnquiry enquiry){
         return new ResponseEntity<String>(enquiryServiceI.saveAllEnquiryDetails(courseId,enquiry), HttpStatus.CREATED);
     }
 
-    @GetMapping("getallenquiry")
+    @GetMapping("/getallenquiry")
     public ResponseEntity<List<AdmissionEnquiry>> getAllEnquiry(){
         List<AdmissionEnquiry> enquirys = enquiryServiceI.getAllEnquirys();
         return new ResponseEntity<List<AdmissionEnquiry>>(enquirys,HttpStatus.OK);
     }
 
-    @GetMapping("getenquirybyid/{id}")
+    @GetMapping("/getenquirybyid/{id}")
     public ResponseEntity<AdmissionEnquiry> getAllEnquiry(@PathVariable("id") Integer id){
         return new ResponseEntity<AdmissionEnquiry>(enquiryServiceI.getEnquiryById(id),HttpStatus.OK);
     }
 
-//    @DeleteMapping("enquirydelete")
-//    public ResponseEntity<String> deleteEnquiry(){
-//
-//        return
-//    }
+    @DeleteMapping("/deleteenquiry/{eid}")
+    public ResponseEntity<String> deleteEnquiry(@PathVariable Integer eid){
+        return new ResponseEntity<String>(enquiryServiceI.deleteEnquiryById(eid),HttpStatus.CREATED);
+    }
+
+
+    @PutMapping("/update-enquiry/{eid}")
+    public ResponseEntity<String> updateEnquiry(@PathVariable("eid") Integer eid, @RequestBody AdmissionEnquiry enquiry){
+        return new ResponseEntity<String>(enquiryServiceI.updateEnquiry(eid,enquiry),HttpStatus.OK);
+    }
 }

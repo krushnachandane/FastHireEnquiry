@@ -27,5 +27,6 @@ public class Courses {
 
     @OneToMany(mappedBy = "interestedCourse", cascade = CascadeType.ALL)
     @JsonManagedReference
+    @JsonIgnore
     private List<AdmissionEnquiry> admissionEnquiries = new ArrayList<>();
 }

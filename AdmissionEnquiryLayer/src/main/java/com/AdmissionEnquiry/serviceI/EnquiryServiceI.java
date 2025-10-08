@@ -12,4 +12,8 @@ public interface EnquiryServiceI {
     public List<AdmissionEnquiry> getAllEnquirys();
 
     public AdmissionEnquiry getEnquiryById(Integer id);
+
+    public String deleteEnquiryById(Integer eid);
+
+    public String updateEnquiry(Integer eid, AdmissionEnquiry enquiry);
 }
