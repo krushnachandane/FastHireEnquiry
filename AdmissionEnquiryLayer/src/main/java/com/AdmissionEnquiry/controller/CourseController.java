@@ -3,6 +3,7 @@ package com.AdmissionEnquiry.controller;
 import com.AdmissionEnquiry.entity.Courses;
 import com.AdmissionEnquiry.serviceI.InquiryCoursesServiceI;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class CourseController {
+
+    @Autowired
     private final InquiryCoursesServiceI coursesServiceI;
 
     // Courses Section
