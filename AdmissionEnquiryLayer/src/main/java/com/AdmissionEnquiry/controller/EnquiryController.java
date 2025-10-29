@@ -24,6 +24,7 @@ public class EnquiryController {
 
     //Enquiry Section
 
+
     @PostMapping("/enquiry/{courseId}")
     public ResponseEntity<String> saveEnquiry(@PathVariable Long courseId , @RequestBody AdmissionEnquiry enquiry){
         return new ResponseEntity<String>(enquiryServiceI.saveAllEnquiryDetails(courseId,enquiry), HttpStatus.CREATED);
