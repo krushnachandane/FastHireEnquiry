@@ -15,7 +15,7 @@ import java.util.List;
 public class CourseController {
 
     @Autowired
-    private final InquiryCoursesServiceI coursesServiceI;
+    private InquiryCoursesServiceI coursesServiceI;
 
     // Courses Section
 
