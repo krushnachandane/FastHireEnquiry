@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/contactus")
-@CrossOrigin(origins = {"http://localhost:5173", "https://wayabroad.in"})
+@CrossOrigin(origins = {"http://localhost:5173", "https://fasthire.in"})
 public class ContactUsController {
 
     @Autowired
